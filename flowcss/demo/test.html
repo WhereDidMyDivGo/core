@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowCSS Test - Basic Functionality</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0a0a0a;
+        color: white;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        background-size: 400% 400%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 4s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .test-box {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        margin: 2rem auto;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        transition: transform 0.1s ease;
+      }
+
+      .info {
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 2rem 0;
+      }
+
+      .status {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        background: #2a2a2a;
+      }
+
+      .success {
+        background: #2d5a2d;
+      }
+      .error {
+        background: #5a2d2d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <h1>FlowCSS Test</h1>
+        <p>Testing the FlowCSS library functionality</p>
+      </div>
+
+      <div class="test-box" id="testBox">Hover & Move Mouse</div>
+
+      <div class="info">
+        <h3>FlowCSS Status</h3>
+        <div id="status" class="status">Loading...</div>
+        <div id="mousePos" class="status">Mouse: (0, 0)</div>
+        <div id="frameInfo" class="status">Frame: 0</div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Import FlowCSS
+      import { flow, style, FlowEngine } from "../dist/index.js";
+
+      const statusEl = document.getElementById("status");
+      const mousePosEl = document.getElementById("mousePos");
+      const frameInfoEl = document.getElementById("frameInfo");
+      const testBox = document.getElementById("testBox");
+
+      try {
+        // Initialize FlowCSS
+        console.log("Initializing FlowCSS...");
+        statusEl.textContent = "Initializing FlowCSS...";
+
+        const engine = new FlowEngine();
+        console.log("FlowEngine created:", engine);
+
+        // Create reactive variables
+        const mouseX = flow("mouseX", 0);
+        const mouseY = flow("mouseY", 0);
+        const time = flow("time", () => performance.now() / 1000);
+
+        console.log("Reactive variables created");
+
+        // Track mouse movement
+        document.addEventListener("mousemove", (e) => {
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+          mouseX.set(x);
+          mouseY.set(y);
+          mousePosEl.textContent = `Mouse: (${x.toFixed(2)}, ${y.toFixed(2)})`;
+        });
+
+        // Apply reactive styles to test box
+        if (testBox) {
+          style(testBox, {
+            transform: flow("boxTransform", () => {
+              const x = (mouseX.get() - 0.5) * 50;
+              const y = (mouseY.get() - 0.5) * 50;
+              const rotation = time.get() * 30;
+              return `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+            }),
+          });
+          console.log("Reactive styles applied");
+        }
+
+        // Start the engine
+        engine.start();
+        console.log("FlowCSS engine started");
+
+        statusEl.textContent = "FlowCSS loaded successfully!";
+        statusEl.className = "status success";
+
+        // Update frame counter
+        let frameCount = 0;
+        const updateFrame = () => {
+          frameCount++;
+          frameInfoEl.textContent = `Frame: ${frameCount}`;
+          requestAnimationFrame(updateFrame);
+        };
+        updateFrame();
+      } catch (error) {
+        console.error("FlowCSS initialization failed:", error);
+        statusEl.textContent = `Error: ${error.message}`;
+        statusEl.className = "status error";
+      }
+    </script>
+  </body>
+</html>
