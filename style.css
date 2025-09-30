@@ -1,0 +1,651 @@
+@import url(data:text/css;base64);
+
+@layer reset, components, utilities, vortex;
+
+@layer vortex {
+  @supports (anchor-name: --vortex) {
+    :root {
+      --anchor-vortex: anchor(--vortex);
+    }
+  }
+
+  :root {
+    --math-vortex: calc(sin(45deg) * cos(30deg) * tan(60deg));
+    --exponential-growth: calc(pow(var(--fibonacci), var(--toggle, 0)));
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  :root {
+    --bg-color: light-dark(oklab(0 0 0), oklab(0.9 0.05 0.1));
+    --vortex-factor: clamp(0.5, sin(var(--time, 0) * 0.01) + 1, 2);
+    --fibonacci: 1.618033988749895;
+    --surge-state: max(sin(var(--time, 0) * var(--fibonacci)), cos(var(--time, 0) / var(--fibonacci)));
+    --neural-network: calc(var(--vortex-factor) * var(--surge-state) * var(--fibonacci));
+    --axis-shift: calc(atan2(var(--vortex-factor), var(--surge-state)) * 180 / 3.14159);
+    --hyperbolic-tan: calc(tanh(var(--time, 0) * 0.001));
+    --sigmoid-activation: calc(1 / (1 + pow(2.71828, -var(--neural-network))));
+  }
+
+  body:has(input:checked):not(:has(input:disabled)):where(:not(.legacy)):is(:focus-within, :hover) {
+    --bg-color: color-mix(in oklch longer hue, canvas 70%, highlight);
+    --surge-state: calc(1 - var(--surge-state));
+    --neural-network: calc(var(--neural-network) * var(--sigmoid-activation));
+  }
+
+  @container (min-width: 1px) and (min-height: 1px) {
+    :root {
+      --container-vortex: calc(100cqw / 100vw * var(--vortex-factor));
+      --aspect-ratio-madness: calc(100cqh / 100cqw);
+    }
+  }
+
+  @supports (backdrop-filter: blur(1px)) and (not (display: -webkit-box)) and (color: color-mix(in oklch, red, blue)) {
+    :root {
+      --modern-support: calc(var(--fibonacci) * var(--vortex-factor));
+      --filter-vortex: contrast(var(--modern-support)) brightness(var(--surge-state));
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) and (prefers-color-scheme: light) {
+    :root {
+      --interaction-multiplier: calc(2.5 * var(--fibonacci));
+      --motion-blur: calc(var(--vortex-factor) * 5px);
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --dark-mode-vortex: calc(var(--surge-state) * -1);
+      --inverted-fibonacci: calc(1 / var(--fibonacci));
+    }
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @property --hue {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --toggle {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --time {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @property --wave-amplitude {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+  }
+
+  @property --curvature-passage {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 1;
+  }
+
+  @property --chromatic-aberration {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+  }
+
+  @property --surge-manifold {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+
+  @property --axis-portal {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @property --fractal-depth {
+    syntax: "<integer>";
+    inherits: false;
+    initial-value: 1;
+  }
+
+  body {
+    background: radial-gradient(circle at calc(50% + sin(var(--time, 0) * 0.02) * 20%) calc(50% + cos(var(--time, 0) * 0.03) * 15%), var(--bg-color) 0%, color-mix(in oklch longer hue, var(--bg-color) 80%, transparent) 50%, transparent 100%), conic-gradient(from calc(var(--angle) * var(--surge-state)) at calc(50% + sin(var(--axis-shift) * 0.01) * 30%) calc(50% + cos(var(--axis-shift) * 0.01) * 25%), hsl(calc(var(--hue) * var(--vortex-factor)), 20%, 5%) 0deg, hsl(calc(var(--hue) * var(--vortex-factor) + 72), 30%, 8%) 72deg, hsl(calc(var(--hue) * var(--vortex-factor) + 144), 25%, 6%) 144deg, hsl(calc(var(--hue) * var(--vortex-factor) + 216), 35%, 9%) 216deg, hsl(calc(var(--hue) * var(--vortex-factor) + 288), 22%, 7%) 288deg, hsl(calc(var(--hue) * var(--vortex-factor)), 20%, 5%) 360deg), repeating-conic-gradient(from calc(var(--axis-portal) * var(--neural-network)) at calc(50% + var(--hyperbolic-tan) * 40%) calc(50% + var(--sigmoid-activation) * 35%), color-mix(in oklch, transparent, var(--bg-color) calc(var(--surge-manifold) * 100%)) 0deg, color-mix(in oklch, var(--bg-color), highlight calc(var(--neural-network) * 50%)) calc(360deg / var(--fibonacci)), transparent calc(720deg / var(--fibonacci)));
+
+    background-attachment: fixed, local, scroll;
+    background-size: calc(200% + var(--wave-amplitude) * 10) calc(200% + var(--wave-amplitude) * 8), 100% 100%, calc(50% * var(--vortex-factor)) calc(50% * var(--vortex-factor));
+    background-position: calc(50% + sin(var(--time, 0) * 0.005) * 20%) calc(50% + cos(var(--time, 0) * 0.007) * 15%), center, calc(50% + var(--surge-state) * 25%) calc(50% + var(--neural-network) * 20%);
+
+    display: grid;
+    place-items: center;
+    min-block-size: 100dvh;
+    min-inline-size: 100dvw;
+    container-type: inline-size;
+    overflow: hidden;
+    perspective: calc(1000px * var(--fibonacci));
+    perspective-origin: calc(50% + sin(var(--axis-shift) * 0.01) * 30%) calc(50% + cos(var(--axis-shift) * 0.01) * 20%);
+    transform-style: preserve-3d;
+
+    @starting-style {
+      opacity: 0;
+      scale: calc(0.8 / var(--fibonacci));
+      rotate: calc(45deg * var(--vortex-factor));
+      backdrop-filter: blur(20px) hue-rotate(180deg);
+    }
+
+    animation: time-keeper 1s linear infinite, variation calc(10s * var(--fibonacci)) ease-in-out infinite, axis-drift calc(15s / var(--vortex-factor)) linear infinite;
+
+    input {
+      appearance: none;
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      clip-path: polygon(calc(50% + sin(var(--time, 0) * 0.1) * 50%) calc(50% + cos(var(--time, 0) * 0.1) * 50%), calc(50% + sin(var(--time, 0) * 0.1 + 120deg) * 50%) calc(50% + cos(var(--time, 0) * 0.1 + 120deg) * 50%), calc(50% + sin(var(--time, 0) * 0.1 + 240deg) * 50%) calc(50% + cos(var(--time, 0) * 0.1 + 240deg) * 50%));
+      transform: translateZ(-9999px) rotateX(calc(var(--axis-shift) * 0.1)) rotateY(calc(var(--surge-state) * 180deg)) scale3d(var(--neural-network), var(--sigmoid-activation), var(--hyperbolic-tan));
+
+      &:checked + label {
+        --toggle: 1;
+        --wave-amplitude: calc(sin(var(--time, 0) * 0.05) * 5px);
+        --curvature-passage: calc(1 + sin(var(--time, 0) * 0.1) * 0.1);
+        --chromatic-aberration: calc(abs(sin(var(--time, 0) * 0.08)) * 2px);
+        --surge-manifold: calc(var(--toggle) * var(--surge-state));
+        --axis-portal: calc(var(--angle) * var(--fibonacci));
+        --fractal-depth: calc(round(var(--vortex-factor)));
+
+        transform: perspective(calc(1000px * var(--fibonacci))) rotateX(calc(sin(var(--time, 0) * 0.02) * 5deg * var(--vortex-factor))) rotateY(calc(cos(var(--time, 0) * 0.03) * 3deg * var(--surge-state))) rotateZ(calc(var(--axis-shift) * 0.1)) translateZ(calc(var(--wave-amplitude) * 2)) scale3d(calc(1 + var(--neural-network) * 0.05), calc(1 + var(--sigmoid-activation) * 0.03), calc(1 + var(--hyperbolic-tan) * 0.02));
+
+        filter: drop-shadow(0 0 calc(var(--chromatic-aberration) * 2) hsl(var(--hue), 100%, 50%)) drop-shadow(calc(var(--chromatic-aberration) * -1) 0 0 hsl(calc(var(--hue) + 120), 100%, 50%)) drop-shadow(calc(var(--chromatic-aberration)) 0 0 hsl(calc(var(--hue) + 240), 100%, 50%)) hue-rotate(calc(var(--axis-shift) * 0.5)) contrast(calc(1 + var(--surge-manifold) * 0.3)) brightness(calc(1 + var(--neural-network) * 0.2)) saturate(calc(1 + var(--sigmoid-activation) * 0.5));
+
+        animation: surge-tunnel calc(2s * var(--fibonacci)) ease-in-out infinite, chromatic-dance calc(3s / var(--vortex-factor)) linear infinite, neural-pulse calc(1.5s * var(--surge-state)) ease-in-out infinite alternate;
+      }
+
+      &:focus-visible + label {
+        outline: calc(2px * var(--vortex-factor)) solid color-mix(in oklch, currentColor, highlight calc(var(--surge-manifold) * 100%));
+        outline-offset: calc(var(--wave-amplitude) + 4px * var(--fibonacci));
+
+        &::before,
+        &::after {
+          animation-play-state: paused;
+        }
+      }
+
+      &:indeterminate + label {
+        --surge-manifold: 0.5;
+        --fractal-depth: calc(var(--vortex-factor) * 2);
+
+        filter: sepia(calc(var(--surge-state) * 100%)) invert(calc(var(--toggle) * 100%)) hue-rotate(calc(var(--axis-shift))) blur(calc(var(--wave-amplitude) * 0.1));
+      }
+    }
+
+    label {
+      --local-hue: calc(var(--hue) + var(--time, 0) * 0.1 * var(--vortex-factor));
+      --morphing-radius: calc(1rem + sin(var(--time, 0) * 0.04) * 0.5rem * var(--fibonacci));
+      --elastic-scale: calc(1 + sin(var(--time, 0) * 0.06) * var(--toggle) * 0.1 * var(--surge-state));
+      --neural-decay: calc(exp(-var(--time, 0) * 0.001) * var(--neural-network));
+      --surge-tunnel-depth: calc(var(--fractal-depth) * var(--wave-amplitude));
+
+      background: radial-gradient(ellipse calc(50% + var(--wave-amplitude) * var(--fibonacci)) calc(40% + var(--wave-amplitude) * var(--vortex-factor)) at calc(50% + sin(var(--time, 0) * 0.05) * 10% * var(--surge-state)) calc(50% + cos(var(--time, 0) * 0.07) * 8% * var(--neural-network)), color-mix(in oklch longer hue, light-dark(oklab(calc(0.95 - var(--neural-decay) * 0.2) calc(0.02 * var(--sigmoid-activation)) calc(0.05 * var(--hyperbolic-tan))), oklab(calc(0.1 + var(--neural-decay) * 0.15) calc(-0.05 * var(--surge-state)) calc(0.02 * var(--vortex-factor)))) calc(var(--toggle) * 100%), color-mix(in hsl shorter hue, canvas, highlight calc(var(--surge-state) * 50%))) 0%, color-mix(in oklch, transparent, hsl(calc(var(--local-hue) * var(--fibonacci)), calc(60% + var(--neural-network) * 40%), calc(50% + var(--sigmoid-activation) * 30%)) calc(var(--surge-manifold) * 80%)) 70%, transparent 100%), conic-gradient(from calc(var(--angle) * var(--curvature-passage) * var(--fibonacci)) at calc(50% + sin(var(--local-hue) * 0.01 * var(--vortex-factor)) * 5%) calc(50% + cos(var(--local-hue) * 0.01 * var(--surge-state)) * 5%), hsl(calc(var(--local-hue) * var(--neural-network)), calc(60% + var(--hyperbolic-tan) * 40%), calc(20% + var(--toggle) * 60%)) 0turn, hsl(calc(var(--local-hue) + 60 * var(--fibonacci)), calc(70% + var(--sigmoid-activation) * 30%), calc(25% + var(--toggle) * 55%)) calc(0.16turn * var(--vortex-factor)), hsl(calc(var(--local-hue) + 120 * var(--surge-state)), calc(65% + var(--neural-decay) * 35%), calc(22% + var(--toggle) * 58%)) calc(0.33turn * var(--fibonacci)), hsl(calc(var(--local-hue) + 180 * var(--vortex-factor)), calc(60% + var(--hyperbolic-tan) * 40%), calc(20% + var(--toggle) * 60%)) calc(0.5turn * var(--surge-state)), hsl(calc(var(--local-hue) + 240 * var(--sigmoid-activation)), calc(70% + var(--neural-network) * 30%), calc(25% + var(--toggle) * 55%)) calc(0.66turn * var(--fibonacci)), hsl(calc(var(--local-hue) + 300 * var(--surge-manifold)), calc(65% + var(--vortex-factor) * 35%), calc(22% + var(--toggle) * 58%)) calc(0.83turn * var(--neural-network)), hsl(calc(var(--local-hue) * var(--neural-network)), calc(60% + var(--hyperbolic-tan) * 40%), calc(20% + var(--toggle) * 60%)) 1turn), repeating-linear-gradient(calc(var(--axis-portal) * var(--vortex-factor)), color-mix(in oklch, transparent, currentColor calc(var(--neural-decay) * 100%)) 0px, color-mix(in oklch, currentColor calc(var(--surge-manifold) * 50%), transparent) calc(var(--wave-amplitude) + 2px), transparent calc(var(--wave-amplitude) * 2 + 4px));
+
+      color: color-mix(in oklch longer hue, light-dark(oklab(calc(0.1 + var(--toggle) * 0.8 * var(--surge-state)) calc(var(--neural-network) * 0.1) calc(var(--sigmoid-activation) * 0.05)), oklab(calc(0.9 - var(--toggle) * 0.8 * var(--vortex-factor)) calc(0.05 * var(--hyperbolic-tan)) calc(0.1 * var(--surge-manifold)))) calc(80% + sin(var(--time, 0) * 0.03 * var(--fibonacci)) * 20%), color-mix(in hsl, currentColor, hsl(calc(var(--local-hue) * var(--neural-network)), calc(70% + var(--surge-state) * 30%), calc(50% + var(--sigmoid-activation) * 40%)) calc(var(--toggle) * 30%)));
+
+      padding-block: clamp(calc(0.5rem * var(--vortex-factor)), calc(2vmin + var(--wave-amplitude) * var(--fibonacci)), calc(2rem * var(--surge-state)));
+      padding-inline: clamp(calc(1rem * var(--fibonacci)), calc(4vmin + var(--wave-amplitude) * 2 * var(--neural-network)), calc(4rem * var(--sigmoid-activation)));
+
+      border-radius: calc(var(--morphing-radius) * var(--elastic-scale) * var(--vortex-factor)) calc(var(--morphing-radius) * var(--elastic-scale) * 1.2 * var(--surge-state)) calc(var(--morphing-radius) * var(--elastic-scale) * 0.8 * var(--neural-network)) calc(var(--morphing-radius) * var(--elastic-scale) * 1.1 * var(--sigmoid-activation));
+
+      border: calc(1px + var(--wave-amplitude) * 0.1) solid color-mix(in oklch, transparent, hsl(calc(var(--local-hue) * var(--fibonacci)), calc(70% * var(--vortex-factor)), calc(60% * var(--surge-state))) calc(var(--toggle) * var(--surge-manifold) * 100%));
+
+      outline: 0;
+      cursor: pointer;
+      position: relative;
+      container-type: inline-size;
+      isolation: isolate;
+      transform-origin: calc(50% + var(--neural-network) * 10%) calc(50% + var(--sigmoid-activation) * 8%);
+      scale: calc(var(--elastic-scale) * var(--vortex-factor));
+
+      transition: scale calc(0.3s * var(--fibonacci)) cubic-bezier(0.68, -0.55, 0.265, 1.55), filter calc(0.2s * var(--surge-state)) ease-out, background calc(0.4s * var(--neural-network)) cubic-bezier(0.25, 0.46, 0.45, 0.94), color calc(0.3s * var(--sigmoid-activation)) ease-in-out, border-radius calc(0.5s * var(--hyperbolic-tan)) cubic-bezier(0.175, 0.885, 0.32, 1.275), transform calc(0.25s * var(--vortex-factor)) cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      view-transition-name: magic-button;
+
+      &:hover:not(:has(input:checked)) {
+        --wave-amplitude: calc(sin(var(--time, 0) * 0.1 * var(--fibonacci)) * 3px);
+        --surge-manifold: calc(var(--surge-state) * 0.7);
+
+        filter: brightness(calc(1.1 * var(--vortex-factor))) saturate(calc(1.2 * var(--surge-state))) hue-rotate(calc(sin(var(--time, 0) * 0.02 * var(--neural-network)) * 30deg)) contrast(calc(1 + var(--sigmoid-activation) * 0.2)) blur(calc(var(--wave-amplitude) * 0.01));
+
+        scale: calc(var(--elastic-scale) * 1.05 * var(--fibonacci));
+
+        transform: rotateZ(calc(sin(var(--time, 0) * 0.05) * 2deg * var(--surge-state))) translateY(calc(var(--wave-amplitude) * -0.5));
+      }
+
+      &:active {
+        --fractal-depth: calc(var(--vortex-factor) * 3);
+
+        scale: calc(var(--elastic-scale) * 0.95 * var(--surge-state));
+        transition-duration: calc(0.1s * var(--fibonacci));
+
+        filter: invert(calc(var(--neural-network) * 0.1)) sepia(calc(var(--sigmoid-activation) * 0.2)) hue-rotate(calc(var(--axis-portal) * 0.1));
+      }
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--wave-amplitude) * -1 * var(--vortex-factor));
+        border-radius: inherit;
+        z-index: -1;
+        pointer-events: none;
+        mix-blend-mode: color-dodge;
+
+        background: conic-gradient(from calc(var(--angle) * var(--surge-state) * var(--fibonacci)) at calc(50% + sin(var(--time, 0) * 0.03 * var(--neural-network)) * 20%) calc(50% + cos(var(--time, 0) * 0.04 * var(--sigmoid-activation)) * 15%), transparent calc(70% - var(--toggle) * 20% * var(--vortex-factor)), hsl(calc(var(--hue) + 180 + var(--time, 0) * 0.2 * var(--fibonacci)), calc(80% + sin(var(--time, 0) * 0.05 * var(--surge-state)) * 20%), calc(40% + var(--toggle) * 20% * var(--neural-network))) calc(75% - var(--toggle) * 15%), hsl(calc(var(--hue) + 240 + var(--time, 0) * 0.3 * var(--vortex-factor)), calc(90% + cos(var(--time, 0) * 0.07 * var(--sigmoid-activation)) * 10%), calc(50% + var(--toggle) * 30% * var(--hyperbolic-tan))) calc(80% - var(--toggle) * 10%), hsl(calc(var(--hue) + 300 + var(--time, 0) * 0.4 * var(--surge-manifold)), calc(85% + sin(var(--time, 0) * 0.06 * var(--neural-network)) * 15%), calc(45% + var(--toggle) * 25% * var(--fibonacci))) calc(85% - var(--toggle) * 5%), transparent 100%);
+
+        animation: spin calc(4s / var(--vortex-factor)) linear infinite, hue-shift calc(3s * var(--fibonacci)) linear infinite, pulse-vortex calc(2s * var(--surge-state)) ease-in-out infinite alternate, surge-variation calc(5s * var(--neural-network)) ease-in-out infinite, axis-warp calc(7s / var(--sigmoid-activation)) linear infinite reverse;
+
+        mask: radial-gradient(ellipse calc(100% + var(--wave-amplitude) * 2 * var(--vortex-factor)) calc(80% + var(--wave-amplitude) * var(--fibonacci)), color-mix(in oklch, black, transparent calc(var(--surge-manifold) * 50%)) 60%, transparent 100%), conic-gradient(from calc(var(--axis-portal) * var(--neural-network)), black calc(var(--fractal-depth) * 10%), transparent calc(var(--fractal-depth) * 20%), black calc(var(--fractal-depth) * 30%), transparent calc(var(--fractal-depth) * 40%));
+        mask-composite: intersect;
+      }
+
+      &::before {
+        filter: blur(calc(10px + var(--wave-amplitude) * var(--fibonacci))) hue-rotate(calc(var(--chromatic-aberration) * 10deg * var(--vortex-factor))) saturate(calc(1.5 + var(--toggle) * 0.5 * var(--surge-state))) contrast(calc(1 + var(--neural-network) * 0.3)) brightness(calc(1 + var(--sigmoid-activation) * 0.2));
+
+        inset: calc(var(--wave-amplitude) * -2 * var(--surge-manifold));
+
+        background: conic-gradient(from calc(var(--angle) * 1.5 * var(--fibonacci)) at calc(50% + sin(var(--time, 0) * 0.08 * var(--vortex-factor)) * 30%) calc(50% + cos(var(--time, 0) * 0.06 * var(--neural-network)) * 25%), transparent calc(70% * var(--surge-state)), color-mix(in oklch longer hue, hsl(calc(var(--hue) + var(--time, 0) * 0.5 * var(--sigmoid-activation)), 100%, 50%) calc(var(--toggle) * 100%), color-mix(in hsl, purple, hsl(calc(var(--axis-portal) * 0.1), calc(80% * var(--hyperbolic-tan)), calc(60% * var(--surge-manifold))) calc(var(--fractal-depth) * 30%))) 85%, transparent 100%);
+
+        transform: scale(calc(1 + var(--curvature-passage) * 0.1 * var(--vortex-factor))) rotate(calc(var(--angle) * -0.5 * var(--surge-state))) skew(calc(var(--neural-network) * 2deg), calc(var(--sigmoid-activation) * 1.5deg));
+
+        opacity: calc(0.6 + var(--toggle) * 0.4 * var(--fibonacci));
+      }
+
+      &::after {
+        backdrop-filter: blur(calc(var(--chromatic-aberration) + 1px * var(--vortex-factor))) hue-rotate(calc(var(--angle) * 0.1 * var(--surge-state))) brightness(calc(1 + var(--toggle) * 0.2 * var(--neural-network))) saturate(calc(1 + var(--sigmoid-activation) * 0.3)) contrast(calc(1 + var(--hyperbolic-tan) * 0.15));
+
+        border: calc(1px + var(--wave-amplitude) * 0.5 * var(--fibonacci)) solid color-mix(in oklch, transparent, hsl(calc(var(--hue) + var(--time, 0) * 0.1 * var(--vortex-factor)), calc(70% * var(--surge-manifold)), calc(60% * var(--neural-network))) calc(var(--toggle) * 50%));
+
+        box-shadow: inset 0 0 calc(var(--wave-amplitude) * 2) color-mix(in oklch, transparent, hsl(calc(var(--axis-portal) * 0.1), calc(80% * var(--sigmoid-activation)), calc(70% * var(--hyperbolic-tan))) calc(var(--surge-manifold) * 100%));
+      }
+
+      .content {
+        position: relative;
+        z-index: calc(var(--fractal-depth) + 1);
+        font-weight: calc(400 + var(--toggle) * 300 * var(--vortex-factor));
+        font-variation-settings: "wght" calc(400 + var(--toggle) * 300 * var(--surge-state)), "slnt" calc(var(--wave-amplitude) * 0.1 * var(--neural-network)), "wdth" calc(100 + var(--toggle) * 25 * var(--fibonacci)), "opsz" calc(12 + var(--sigmoid-activation) * 20), "GRAD" calc(var(--hyperbolic-tan) * 100);
+
+        text-shadow: calc(var(--chromatic-aberration) * 0.5 * var(--vortex-factor)) 0 0 hsl(calc(var(--hue) * var(--surge-state)), 100%, 50%), calc(var(--chromatic-aberration) * -0.5 * var(--neural-network)) 0 0 hsl(calc(var(--hue) + 180 * var(--fibonacci)), 100%, 50%), 0 0 calc(var(--wave-amplitude) + 5px * var(--sigmoid-activation)) color-mix(in oklch, currentColor, hsl(calc(var(--axis-portal) * 0.1), calc(70% * var(--hyperbolic-tan)), calc(80% * var(--surge-manifold))) calc(var(--toggle) * 50%));
+
+        filter: drop-shadow(0 calc(var(--wave-amplitude) * var(--vortex-factor)) calc(var(--wave-amplitude) * 2 * var(--fibonacci)) color-mix(in oklch, transparent, currentColor calc(30% * var(--surge-state)))) drop-shadow(calc(var(--chromatic-aberration) * var(--neural-network)) 0 0 color-mix(in oklch, transparent, hsl(calc(var(--hue) + var(--axis-portal) * 0.1), calc(80% * var(--sigmoid-activation)), calc(60% * var(--hyperbolic-tan))) calc(var(--toggle) * 40%)));
+
+        transform: translateY(calc(sin(var(--time, 0) * 0.05 * var(--fibonacci)) * var(--wave-amplitude) * 0.1)) skewX(calc(sin(var(--time, 0) * 0.03 * var(--vortex-factor)) * var(--toggle) * 2deg * var(--surge-state))) rotateZ(calc(var(--neural-network) * var(--toggle) * 1deg)) perspective(calc(500px * var(--sigmoid-activation))) rotateX(calc(var(--hyperbolic-tan) * var(--toggle) * 5deg));
+
+        @container (max-width: 200px) {
+          font-size: clamp(calc(0.8rem * var(--vortex-factor)), calc(4cqw * var(--fibonacci)), calc(1.2rem * var(--surge-state)));
+        }
+
+        @container (min-width: 201px) {
+          font-size: clamp(calc(1rem * var(--neural-network)), calc(3cqw * var(--sigmoid-activation)), calc(1.5rem * var(--hyperbolic-tan)));
+        }
+
+        @container (aspect-ratio > 1) {
+          letter-spacing: calc(var(--wave-amplitude) * 0.01 * var(--surge-manifold));
+        }
+
+        @container (aspect-ratio <= 1) {
+          word-spacing: calc(var(--wave-amplitude) * 0.02 * var(--fractal-depth));
+        }
+      }
+    }
+  }
+}
+
+@layer utilities {
+  @keyframes time-keeper {
+    to {
+      --time: calc(var(--time, 0) + 1);
+    }
+  }
+
+  @keyframes variation {
+    0%,
+    100% {
+      --surge-state: 0;
+      background-position: 0% 50%, 50% 50%, 100% 0%;
+    }
+    25% {
+      --surge-state: calc(sin(45deg) * var(--fibonacci));
+      background-position: 25% 25%, 75% 25%, 50% 50%;
+    }
+    50% {
+      --surge-state: calc(var(--fibonacci) / 2);
+      background-position: 50% 0%, 100% 50%, 0% 100%;
+    }
+    75% {
+      --surge-state: calc(cos(45deg) * var(--fibonacci));
+      background-position: 75% 75%, 25% 75%, 50% 50%;
+    }
+  }
+
+  @keyframes axis-drift {
+    0% {
+      --axis-portal: 0deg;
+      --axis-shift: 0;
+    }
+    100% {
+      --axis-portal: calc(360deg * var(--fibonacci));
+      --axis-shift: calc(360 * var(--vortex-factor));
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      --angle: 0deg;
+      scale: 1;
+      filter: hue-rotate(0deg);
+    }
+    25% {
+      --angle: calc(90deg * var(--fibonacci));
+      scale: calc(1 + sin(25deg) * 0.05 * var(--vortex-factor));
+      filter: hue-rotate(calc(90deg * var(--surge-state)));
+    }
+    50% {
+      --angle: calc(180deg * var(--neural-network));
+      scale: calc(1 + sin(50deg) * 0.05 * var(--fibonacci));
+      filter: hue-rotate(calc(180deg * var(--sigmoid-activation)));
+    }
+    75% {
+      --angle: calc(270deg * var(--vortex-factor));
+      scale: calc(1 + sin(75deg) * 0.05 * var(--surge-state));
+      filter: hue-rotate(calc(270deg * var(--hyperbolic-tan)));
+    }
+    100% {
+      --angle: calc(360deg * var(--fibonacci));
+      scale: 1;
+      filter: hue-rotate(calc(360deg * var(--neural-network)));
+    }
+  }
+
+  @keyframes hue-shift {
+    0% {
+      --hue: 0;
+      filter: hue-rotate(0deg) saturate(1) brightness(1);
+    }
+    16.66% {
+      --hue: calc(60 * var(--fibonacci));
+      filter: hue-rotate(calc(60deg * var(--vortex-factor))) saturate(calc(1.1 * var(--surge-state))) brightness(calc(1.05 * var(--neural-network)));
+    }
+    33.33% {
+      --hue: calc(120 * var(--sigmoid-activation));
+      filter: hue-rotate(calc(120deg * var(--fibonacci))) saturate(calc(1.2 * var(--hyperbolic-tan))) brightness(calc(1.1 * var(--vortex-factor)));
+    }
+    50% {
+      --hue: calc(180 * var(--surge-state));
+      filter: hue-rotate(calc(180deg * var(--neural-network))) saturate(calc(1.3 * var(--fibonacci))) brightness(calc(1.15 * var(--sigmoid-activation)));
+    }
+    66.66% {
+      --hue: calc(240 * var(--vortex-factor));
+      filter: hue-rotate(calc(240deg * var(--hyperbolic-tan))) saturate(calc(0.8 * var(--surge-state))) brightness(calc(0.9 * var(--neural-network)));
+    }
+    83.33% {
+      --hue: calc(300 * var(--fibonacci));
+      filter: hue-rotate(calc(300deg * var(--sigmoid-activation))) saturate(calc(0.9 * var(--vortex-factor))) brightness(calc(0.95 * var(--surge-state)));
+    }
+    100% {
+      --hue: calc(360 * var(--neural-network));
+      filter: hue-rotate(calc(360deg * var(--fibonacci))) saturate(1) brightness(1);
+    }
+  }
+
+  @keyframes pulse-vortex {
+    0% {
+      --vortex-factor: calc(0.5 * var(--fibonacci));
+      opacity: calc(0.6 * var(--surge-state));
+      transform: scale(calc(0.98 * var(--neural-network))) rotate(0deg);
+    }
+    50% {
+      --vortex-factor: calc(2 * var(--sigmoid-activation));
+      opacity: calc(1 * var(--hyperbolic-tan));
+      transform: scale(calc(1.02 * var(--fibonacci))) rotate(calc(180deg * var(--vortex-factor)));
+    }
+    100% {
+      --vortex-factor: calc(0.5 * var(--surge-state));
+      opacity: calc(0.6 * var(--neural-network));
+      transform: scale(calc(0.98 * var(--sigmoid-activation))) rotate(calc(360deg * var(--fibonacci)));
+    }
+  }
+
+  @keyframes surge-variation {
+    0% {
+      --surge-state: 0;
+      --wave-amplitude: 0px;
+      --curvature-passage: 1;
+      --surge-manifold: 0;
+    }
+    25% {
+      --surge-state: calc(0.707 * var(--fibonacci));
+      --wave-amplitude: calc(3px * var(--vortex-factor));
+      --curvature-passage: calc(1.1 * var(--neural-network));
+      --surge-manifold: calc(0.25 * var(--sigmoid-activation));
+    }
+    50% {
+      --surge-state: calc(1 * var(--vortex-factor));
+      --wave-amplitude: calc(5px * var(--fibonacci));
+      --curvature-passage: calc(0.9 * var(--hyperbolic-tan));
+      --surge-manifold: calc(0.5 * var(--neural-network));
+    }
+    75% {
+      --surge-state: calc(0.707 * var(--sigmoid-activation));
+      --wave-amplitude: calc(3px * var(--surge-state));
+      --curvature-passage: calc(1.1 * var(--vortex-factor));
+      --surge-manifold: calc(0.75 * var(--fibonacci));
+    }
+    100% {
+      --surge-state: 0;
+      --wave-amplitude: 0px;
+      --curvature-passage: 1;
+      --surge-manifold: 0;
+    }
+  }
+
+  @keyframes surge-tunnel {
+    0%,
+    100% {
+      --axis-portal: 0deg;
+      transform: translateZ(0) rotateX(0) rotateY(0);
+      filter: brightness(1) contrast(1);
+    }
+    25% {
+      --axis-portal: calc(90deg * var(--fibonacci));
+      transform: translateZ(calc(var(--wave-amplitude) * var(--vortex-factor))) rotateX(calc(5deg * var(--surge-state))) rotateY(calc(3deg * var(--neural-network)));
+      filter: brightness(calc(1.1 * var(--sigmoid-activation))) contrast(calc(1.2 * var(--hyperbolic-tan)));
+    }
+    50% {
+      --axis-portal: calc(180deg * var(--vortex-factor));
+      transform: translateZ(calc(var(--wave-amplitude) * 2 * var(--fibonacci))) rotateX(calc(10deg * var(--neural-network))) rotateY(calc(6deg * var(--surge-state)));
+      filter: brightness(calc(1.2 * var(--vortex-factor))) contrast(calc(1.4 * var(--sigmoid-activation)));
+    }
+    75% {
+      --axis-portal: calc(270deg * var(--surge-state));
+      transform: translateZ(calc(var(--wave-amplitude) * var(--neural-network))) rotateX(calc(5deg * var(--fibonacci))) rotateY(calc(3deg * var(--hyperbolic-tan)));
+      filter: brightness(calc(1.1 * var(--surge-manifold))) contrast(calc(1.2 * var(--vortex-factor)));
+    }
+  }
+
+  @keyframes chromatic-dance {
+    0%,
+    100% {
+      --chromatic-aberration: 0px;
+      filter: drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
+    }
+    16% {
+      --chromatic-aberration: calc(1px * var(--fibonacci));
+      filter: drop-shadow(calc(1px * var(--vortex-factor)) 0 0 hsl(calc(var(--hue)), 100%, 50%)) drop-shadow(calc(-1px * var(--surge-state)) 0 0 hsl(calc(var(--hue) + 180), 100%, 50%)) drop-shadow(0 calc(1px * var(--neural-network)) 0 hsl(calc(var(--hue) + 90), 100%, 50%));
+    }
+    33% {
+      --chromatic-aberration: calc(2px * var(--vortex-factor));
+      filter: drop-shadow(calc(2px * var(--fibonacci)) 0 0 hsl(calc(var(--hue) + var(--axis-shift) * 0.1), 100%, 50%)) drop-shadow(calc(-2px * var(--surge-state)) 0 0 hsl(calc(var(--hue) + 180 + var(--axis-shift) * 0.1), 100%, 50%)) drop-shadow(0 calc(2px * var(--neural-network)) 0 hsl(calc(var(--hue) + 270 + var(--axis-shift) * 0.1), 100%, 50%));
+    }
+    50% {
+      --chromatic-aberration: calc(1.5px * var(--surge-state));
+      filter: drop-shadow(0 calc(1.5px * var(--sigmoid-activation)) 0 hsl(calc(var(--hue) + var(--axis-portal) * 0.1), 100%, 50%)) drop-shadow(calc(-1.5px * var(--hyperbolic-tan)) 0 0 hsl(calc(var(--hue) + 120 + var(--axis-portal) * 0.1), 100%, 50%)) drop-shadow(calc(1.5px * var(--fibonacci)) 0 0 hsl(calc(var(--hue) + 240 + var(--axis-portal) * 0.1), 100%, 50%));
+    }
+    66% {
+      --chromatic-aberration: calc(2px * var(--neural-network));
+      filter: drop-shadow(calc(-2px * var(--vortex-factor)) 0 0 hsl(calc(var(--hue) + var(--time, 0) * 0.1), 100%, 50%)) drop-shadow(calc(2px * var(--fibonacci)) 0 0 hsl(calc(var(--hue) + 180 + var(--time, 0) * 0.1), 100%, 50%)) drop-shadow(0 calc(-2px * var(--surge-state)) 0 hsl(calc(var(--hue) + 90 + var(--time, 0) * 0.1), 100%, 50%));
+    }
+    83% {
+      --chromatic-aberration: calc(1px * var(--sigmoid-activation));
+      filter: drop-shadow(calc(-1px * var(--hyperbolic-tan)) 0 0 hsl(calc(var(--hue) + var(--surge-manifold) * 360), 100%, 50%)) drop-shadow(calc(1px * var(--neural-network)) 0 0 hsl(calc(var(--hue) + 180 + var(--surge-manifold) * 360), 100%, 50%)) drop-shadow(0 calc(-1px * var(--fibonacci)) 0 hsl(calc(var(--hue) + 270 + var(--surge-manifold) * 360), 100%, 50%));
+    }
+  }
+
+  @keyframes neural-pulse {
+    0% {
+      --neural-network: calc(var(--vortex-factor) * var(--surge-state) * var(--fibonacci));
+      --sigmoid-activation: calc(1 / (1 + pow(2.71828, -var(--neural-network))));
+      opacity: calc(0.8 + var(--sigmoid-activation) * 0.2);
+    }
+    50% {
+      --neural-network: calc(var(--vortex-factor) * var(--surge-state) * var(--fibonacci) * 2);
+      --sigmoid-activation: calc(1 / (1 + pow(2.71828, -var(--neural-network))));
+      opacity: calc(1 - var(--sigmoid-activation) * 0.3);
+    }
+    100% {
+      --neural-network: calc(var(--vortex-factor) * var(--surge-state) * var(--fibonacci));
+      --sigmoid-activation: calc(1 / (1 + pow(2.71828, -var(--neural-network))));
+      opacity: calc(0.8 + var(--sigmoid-activation) * 0.2);
+    }
+  }
+
+  @keyframes axis-warp {
+    0% {
+      --axis-shift: 0;
+      --fractal-depth: 1;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    25% {
+      --axis-shift: calc(90 * var(--fibonacci));
+      --fractal-depth: calc(2 * var(--vortex-factor));
+      clip-path: polygon(calc(10% * var(--surge-state)) calc(10% * var(--neural-network)), calc(90% + 10% * var(--sigmoid-activation)) calc(10% * var(--hyperbolic-tan)), calc(90% + 10% * var(--surge-manifold)) calc(90% + 10% * var(--vortex-factor)), calc(10% * var(--fibonacci)) calc(90% + 10% * var(--surge-state)));
+    }
+    50% {
+      --axis-shift: calc(180 * var(--vortex-factor));
+      --fractal-depth: calc(3 * var(--surge-state));
+      clip-path: polygon(calc(20% * var(--neural-network)) calc(20% * var(--fibonacci)), calc(80% + 20% * var(--hyperbolic-tan)) calc(20% * var(--sigmoid-activation)), calc(80% + 20% * var(--surge-manifold)) calc(80% + 20% * var(--vortex-factor)), calc(20% * var(--surge-state)) calc(80% + 20% * var(--neural-network)));
+    }
+    75% {
+      --axis-shift: calc(270 * var(--surge-state));
+      --fractal-depth: calc(2 * var(--fibonacci));
+      clip-path: polygon(calc(10% * var(--sigmoid-activation)) calc(10% * var(--vortex-factor)), calc(90% + 10% * var(--neural-network)) calc(10% * var(--surge-manifold)), calc(90% + 10% * var(--hyperbolic-tan)) calc(90% + 10% * var(--fibonacci)), calc(10% * var(--vortex-factor)) calc(90% + 10% * var(--sigmoid-activation)));
+    }
+    100% {
+      --axis-shift: calc(360 * var(--fibonacci));
+      --fractal-depth: 1;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      --vortex-factor: 1 !important;
+      --surge-state: 0.5 !important;
+      --neural-network: 1 !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    label {
+      forced-color-adjust: none;
+      background: ButtonFace !important;
+      color: ButtonText !important;
+      border: 1px solid ButtonBorder !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    :root {
+      --vortex-factor: 2;
+      --surge-state: 1;
+    }
+
+    label {
+      border-width: calc(2px * var(--fibonacci)) !important;
+      filter: contrast(2) !important;
+    }
+  }
+
+  @media (orientation: portrait) and (max-width: 768px) {
+    :root {
+      --fibonacci: 1.2;
+      --vortex-factor: 0.8;
+    }
+  }
+
+  @media (orientation: landscape) and (min-width: 769px) {
+    :root {
+      --fibonacci: 1.8;
+      --surge-state: calc(var(--surge-state) * 1.5);
+    }
+  }
+}
+
+@supports (view-transition-name: none) {
+  ::view-transition-new(magic-button) {
+    animation: surge-morph calc(0.5s * var(--fibonacci)) cubic-bezier(0.4, 0, 0.2, 1), chromatic-split calc(0.3s * var(--vortex-factor)) ease-out;
+  }
+
+  @keyframes surge-morph {
+    0% {
+      transform: scale(var(--toggle, 0)) rotate(calc(var(--axis-portal) * -1));
+      filter: blur(calc(var(--wave-amplitude) * 2)) hue-rotate(0deg);
+    }
+    50% {
+      transform: scale(calc(1.2 * var(--fibonacci))) rotate(calc(var(--axis-portal) * 0.5));
+      filter: blur(calc(var(--wave-amplitude) * 0.5)) hue-rotate(calc(180deg * var(--vortex-factor)));
+    }
+    100% {
+      transform: scale(1) rotate(var(--axis-portal));
+      filter: blur(0px) hue-rotate(calc(360deg * var(--surge-state)));
+    }
+  }
+
+  @keyframes chromatic-split {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
+    }
+    50% {
+      filter: drop-shadow(calc(var(--chromatic-aberration) * 2) 0 0 red) drop-shadow(calc(var(--chromatic-aberration) * -2) 0 0 cyan);
+    }
+  }
+}
